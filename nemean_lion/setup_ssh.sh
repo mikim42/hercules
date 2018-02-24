@@ -6,7 +6,7 @@
 #    By: Mingyun Kim <mikim@student.42.us.org>      +#+  +:+       +#+         #
 #    GitHub:  https://github.com/mikim42          +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/23 15:40:45 by Mingyun K         #+#    #+#              #
-#    Updated: 2018/02/23 17:34:24 by mikim            ###   ########.fr        #
+#    Updated: 2018/02/23 17:39:37 by Mingyun K        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,8 @@ echo "netmask 255.255.255.0" >> /etc/network/interfaces
 cp /etc/ssh/sshd_config /etc/ssh/sshd_config sshd_config-backup
 
 # change the port number
-sed -i "s/^Port .*/Port 2280/g" /etc/ssh/sshd_config
+# private port number 49152 ~ 65535
+sed -i "s/^Port .*/Port 50100/g" /etc/ssh/sshd_config
 
 # exit su
 exit
