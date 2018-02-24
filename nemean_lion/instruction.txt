@@ -1,0 +1,47 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    instruction.txt                                    :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: Mingyun Kim <mikim@student.42.us.org>      +#+  +:+       +#+         #
+#    GitHub:  https://github.com/mikim42          +#+#+#+#+#+   +#+            #
+#    Created: 2018/02/23 16:43:02 by Mingyun K         #+#    #+#              #
+#    Updated: 2018/02/23 17:27:14 by Mingyun K        ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+How to SSH into VirtualBox Debian
+
+# Depends on computers, IP addresses can be different
+
+1. Install VirtualBox Debian
+
+2. Run 'install_ssh.sh' in Debian
+
+3. Shutdown the VM
+
+4. Go to VirtualBox Manager,
+   Global Tools > Host Network Manager > Create:
+   Name: vboxnet0
+   Adapter:
+       - Configure Adapter Manually
+	   IPv4 Address: 192.168.57.1
+	   IPv4 Network Mask: 255.255.255.0
+	   IPv6 Address:
+	   IPv6 Prefix Length: 0
+   DHCP Server:
+       Enable Server
+	   Server Address: 192.168.57.2
+	   Server Mask: 255.255.255.0
+	   Lower Address Bound: 192.168.57.3
+	   Upper Address Bound: 192.168.57.254
+
+5. Click Debian OS and go to:
+   Settings > Network > Adapter 2:
+       Enable Network Adapter
+	   attached to: Host-only Adapter
+	   name: vboxnet0
+
+6. Power up Debian, run 'setup_ssh.sh' in Debian
+
+7. Go to Mac OS terminal, run 'ssh <Debian-username>@192.168.56.10 -p <port>'
