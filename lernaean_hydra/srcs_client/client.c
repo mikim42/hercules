@@ -6,7 +6,7 @@
 /*   By: Mingyun Kim <mikim@student.42.us.org>      +#+  +:+       +#+        */
 /*   GitHub:  https://github.com/mikim42          +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/03 13:59:52 by Mingyun K         #+#    #+#             */
-/*   Updated: 2018/03/03 19:00:00 by Mingyun K        ###   ########.fr       */
+/*   Updated: 2018/03/03 19:08:46 by Mingyun K        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	communicate(int socket_fd)
 	ft_printf("Disconnected\n");
 }
 
-bool	connect_socket(s_sockaddr_in *server, int *socket_fd, char **av)
+bool	connect_socket(t_sockaddr_in *server, int *socket_fd, char **av)
 {
 	if ((*socket_fd = socket(AF_INET, SOCK_STREAM, 0)) < 0)
 	{
@@ -51,7 +51,7 @@ bool	connect_socket(s_sockaddr_in *server, int *socket_fd, char **av)
 	inet_addr("127.0.0.1") : inet_addr(av[1]);
 	server->sin_family = AF_INET;
 	server->sin_port = htons(atoi(av[2]));
-	if (connect(*socket_fd, (s_sockaddr *)server, sizeof(s_sockaddr_in)) < 0)
+	if (connect(*socket_fd, (t_sockaddr *)server, sizeof(t_sockaddr_in)) < 0)
 	{
 		ft_printf("Failed to connect\n");
 		return (false);
@@ -61,7 +61,7 @@ bool	connect_socket(s_sockaddr_in *server, int *socket_fd, char **av)
 
 int		main(int ac, char **av)
 {
-	s_sockaddr_in	server;
+	t_sockaddr_in	server;
 	int				socket_fd;
 
 	if (ac != 3)

@@ -6,7 +6,7 @@
 /*   By: Mingyun Kim <mikim@student.42.us.org>      +#+  +:+       +#+        */
 /*   GitHub:  https://github.com/mikim42          +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/02 18:24:20 by Mingyun K         #+#    #+#             */
-/*   Updated: 2018/03/03 18:57:18 by Mingyun K        ###   ########.fr       */
+/*   Updated: 2018/03/03 19:09:29 by Mingyun K        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 bool	set_server(int *client_fd, int port)
 {
-	s_sockaddr_in	server;
-	s_sockaddr_in	client;
+	t_sockaddr_in	server;
+	t_sockaddr_in	client;
 	int				socket_fd;
 	int				socket_size;
 
@@ -24,12 +24,12 @@ bool	set_server(int *client_fd, int port)
 	server.sin_family = AF_INET;
 	server.sin_addr.s_addr = INADDR_ANY;
 	server.sin_port = htons(port);
-	if (bind(socket_fd, (s_sockaddr *)&server, sizeof(server)) < 0)
+	if (bind(socket_fd, (t_sockaddr *)&server, sizeof(server)) < 0)
 		return (false);
 	if (listen(socket_fd, BACKLOG) < 0)
 		return (false);
-	socket_size = sizeof(s_sockaddr_in);
-	if ((*client_fd = accept(socket_fd, (s_sockaddr *)&client, 
+	socket_size = sizeof(t_sockaddr_in);
+	if ((*client_fd = accept(socket_fd, (t_sockaddr *)&client, 
 		(socklen_t*)&socket_size)) < 0)
 		return (false);
 	return (true);
@@ -62,11 +62,9 @@ int		main(int ac, char **av)
 {
 	pid_t	process_id;
 	pid_t	session_id;
-	int		ret;
 
 	process_id = 0;
 	session_id = 0;
-	ret = 0;
 	if (ac == 3 && !ft_strcmp(av[1], "-d"))
 	{
 		if ((process_id = fork()) != 0 || (session_id = setsid()) < 0)
@@ -78,11 +76,11 @@ int		main(int ac, char **av)
 		close(STDIN_FILENO);
 		close(STDOUT_FILENO);
 		close(STDERR_FILENO);
-		ret = server(ft_atoi(av[2]));
+		return (server(ft_atoi(av[2])));
 	}
 	else if (ac == 2)
-		ret = server(ft_atoi(av[1]));
+		return (server(ft_atoi(av[1])));
 	else
 		ft_printf("Usage: ./server [-d] <PORT>\n");
-	return (ret);
+	return (0);
 }
