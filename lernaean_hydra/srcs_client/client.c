@@ -3,12 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Mingyun Kim <mikim@student.42.us.org>      +#+  +:+       +#+        */
-/*   GitHub:  https://github.com/mikim42          +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/03 13:59:52 by Mingyun K         #+#    #+#             */
-/*   Updated: 2018/03/03 19:08:46 by Mingyun K        ###   ########.fr       */
+/*   By: mikim <mikim@student.42.us.org>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/03/03 13:59:52 by mikim             #+#    #+#             */
+/*   Updated: 2018/03/04 16:15:49 by mikim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/*
+**	asdfffffffffffffffffffffffffffffffffffffffff
+**	adfsfd
+*/
 
 #include <lernaean_hydra.h>
 
