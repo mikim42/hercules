@@ -6,7 +6,7 @@
 #    By: mikim <mikim@student.42.us.org>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/09 16:06:35 by mikim             #+#    #+#              #
-#    Updated: 2018/03/09 19:05:27 by mikim            ###   ########.fr        #
+#    Updated: 2018/03/09 21:14:31 by mikim            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ end
 if ARGV.length == 1 and File.file?(ARGV[0])
 	File.open(ARGV[0], "r") do |f|
 		f.each_line do |line|
-			line = line.chomp
+			line = line.strip
 			begin
 				response = token.get("/v2/users/#{line}/locations")
 				while response.status != 200
@@ -61,7 +61,7 @@ elsif ARGV.length == 0
 		puts "Enter '_EXIT' to exit"
 		print "Enter login: "
 		begin
-			login = gets().chomp
+			login = gets().strip
 		rescue
 			return 0
 		end
