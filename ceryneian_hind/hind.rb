@@ -6,7 +6,7 @@
 #    By: mikim <mikim@student.42.us.org>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/09 16:06:35 by mikim             #+#    #+#              #
-#    Updated: 2018/03/09 18:00:55 by mikim            ###   ########.fr        #
+#    Updated: 2018/03/09 19:05:27 by mikim            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ if !UID or !SECRET
 	return 0
 end
 
-if ARGV.length == 1
+if ARGV.length == 1 and File.file?(ARGV[0])
 	File.open(ARGV[0], "r") do |f|
 		f.each_line do |line|
 			line = line.chomp
@@ -56,7 +56,7 @@ if ARGV.length == 1
 			end
 		end
 	end
-else
+elsif ARGV.length == 0
 	while true
 		puts "Enter '_EXIT' to exit"
 		print "Enter login: "
@@ -86,4 +86,6 @@ else
 			puts "#{login} not found\n\n"
 		end
 	end
+else
+	puts "cannot find the file"
 end
