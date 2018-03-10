@@ -6,7 +6,7 @@
 #    By: mikim <mikim@student.42.us.org>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/09 16:06:35 by mikim             #+#    #+#              #
-#    Updated: 2018/03/09 21:14:31 by mikim            ###   ########.fr        #
+#    Updated: 2018/03/09 21:20:43 by mikim            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,12 +39,9 @@ if ARGV.length == 1 and File.file?(ARGV[0])
 			line = line.strip
 			begin
 				response = token.get("/v2/users/#{line}/locations")
-				while response.status != 200
+				until response.status == 200
 					puts "Waiting for the server..."
 					sleep(3)
-					if response.status == 200
-						break ;
-					end
 				end
 				if response.parsed[0]["end_at"]
 					puts "OFFLINE - #{line}\n\n"
@@ -57,7 +54,7 @@ if ARGV.length == 1 and File.file?(ARGV[0])
 		end
 	end
 elsif ARGV.length == 0
-	while true
+	until false
 		puts "Enter '_EXIT' to exit"
 		print "Enter login: "
 		begin
@@ -70,12 +67,9 @@ elsif ARGV.length == 0
 				return 0
 			end
 			response = token.get("/v2/users/#{login}/locations")
-			while response.status != 200
+			until response.status == 200
 				puts "Waiting for the server..."
 				sleep(3)
-				if response.status == 200
-					break ;
-				end
 			end
 			if response.parsed[0]["end_at"]
 				puts "OFFLINE - #{login}\n\n"
