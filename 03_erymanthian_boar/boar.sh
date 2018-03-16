@@ -6,7 +6,7 @@
 #    By: mikim <mikim@student.42.us.org>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/13 10:20:51 by mikim             #+#    #+#              #
-#    Updated: 2018/03/16 00:24:40 by mikim            ###   ########.fr        #
+#    Updated: 2018/03/16 02:02:07 by kimminseo        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,10 @@
 #
 
 FILE=/var/at/at.allow
+LOG_USER=$LOGNAME
 OUT=`tty`
+
+sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.atrun.plist 2> /dev/null;
 
 echo "echo \"
 yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy\\\n\\
@@ -95,8 +98,8 @@ yyyyyyyyyyyyyyyyyyyyyyhhhhhhhhhhhhhhhhhhhhhhhhhhhhdddddddddddddddddddddddddddddd
 \" > $OUT" > gotcha.sh
 chmod 755 gotcha.sh
 
-if ! cat "$FILE" | grep -q "$LOGNAME" 2>&1; then
-	echo "$LOGNAME" >> /var/at/at.allow;
+if ! cat "$FILE" | grep -q "$LOG_USER" 2>&1; then
+	echo "$LOG_USER" | sudo tee -a /var/at/at.allow 2> /dev/null;
 fi
 
 #at 8:42 AM 12/21 < gotcha.sh 2> /dev/null	# BOAR
