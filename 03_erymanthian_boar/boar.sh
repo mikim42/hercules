@@ -6,13 +6,11 @@
 #    By: mikim <mikim@student.42.us.org>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/13 10:20:51 by mikim             #+#    #+#              #
-#    Updated: 2018/03/13 10:21:05 by mikim            ###   ########.fr        #
+#    Updated: 2018/03/13 10:27:08 by mikim            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #
-# Mingyun Kim
-# https://www.github.com/mikim42
+#  Mingyun Kim
+#  https://www.github.com/mikim42
 #
-
-
